@@ -1,13 +1,9 @@
 import './App.css'
+import Battle from './pages/Battle/Battle'
 
 function App() {
 
-  return (
-    <>
-      <h1 className="text-3xl font-bold underline">
-      Hello world!
-    </h1>    </>
-  )
+  return (<Battle />)
 }
 
 export default App
