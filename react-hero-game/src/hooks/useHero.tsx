@@ -37,7 +37,7 @@ const useHero = (): HeroHookResult => {
         SPEED_INTERVAL,
         LUCK_INTERVAL
       ),
-      cristicalStrike: () => isProbability(CRITICAL_STRIKE_CHANCE),
+      criticalStrike: () => isProbability(CRITICAL_STRIKE_CHANCE),
       resilience: () => isProbability(RESILIENCE_CHANCE),
     });
   };
@@ -71,7 +71,7 @@ const useHero = (): HeroHookResult => {
     /**
      * Critical Strike check. If true, attack is doubled or tripled
      */
-    if (hero.cristicalStrike()) {
+    if (hero.criticalStrike()) {
       events = CRITICAL_STRIKE_EVENT;
       /**
        * Triple Damage check - check probabilty and if last time was not triple attack.

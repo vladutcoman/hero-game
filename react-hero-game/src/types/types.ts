@@ -16,7 +16,7 @@ export interface Character {
 export interface Villain extends Character {};
 
 export interface Hero extends Character {
-  cristicalStrike: () => boolean;
+  criticalStrike: () => boolean;
   resilience: () => boolean;
 }
 

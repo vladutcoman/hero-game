@@ -41,55 +41,39 @@ const Battle = () => {
       return;
     }
     if (currentTurn === CurrentPlayer.HERO) {
-      heroTurn();
+      const message = heroAttack();
+      goNextRound(CurrentPlayer.VILLAIN, message);
     } else {
-      villainTurn();
+      const message = villainAttack();
+      goNextRound(CurrentPlayer.HERO, message);
     }
-  }
-
-  const heroTurn = () => {
-    if (isProbability(villainData.villain.luck)) {
-      goNextRound(
-        CurrentPlayer.VILLAIN,
-        `Villain got lucky! Villain current health: ${villainData.villain.health}`
-      );
-    } else {
-      heroAttack();
-    }
-  }
-
-  const villainTurn = () => {
-    if (isProbability(heroData.hero.luck)) {
-      goNextRound(
-        CurrentPlayer.HERO,
-        `Hero got lucky! Hero current health: ${heroData.hero.health}`
-      )
-    } else {
-      villainAttack();
-    }
-  }
-
-  const villainAttack = () => {
-    const { attack } = villainData.getAttack(heroData.hero.defence);
-    const event = heroData.updateHealth(attack);
-    goNextRound(
-      CurrentPlayer.HERO,
-      `Villain attack with ${attack} damage.  ${event} Hero current health: ${
-        heroData.hero.health - attack
-      }`
-    )
-  }
+  };
 
   const heroAttack = () => {
-    const { attack, events } = heroData.getAttack(villainData.villain.defence);
-    villainData.updateHealth(attack);
-    goNextRound(
-      CurrentPlayer.VILLAIN,
-      `Hero attack with ${attack} damage.  ${events} Villain current health: ${
+    if (isProbability(villainData.villain.luck)) {
+      return `Villain got lucky! Villain current health: ${villainData.villain.health}`;
+    } else {
+      const { attack, events } = heroData.getAttack(
+        villainData.villain.defence
+      );
+      villainData.updateHealth(attack);
+      return `Hero attack with ${attack} damage.  ${events} Villain current health: ${
         villainData.villain.health - attack
-      }`
-    );
-  }
+      }`;
+    }
+  };
+
+  const villainAttack = () => {
+    if (isProbability(heroData.hero.luck)) {
+      return `Hero got lucky! Hero current health: ${heroData.hero.health}`;
+    } else {
+      const { attack } = villainData.getAttack(heroData.hero.defence);
+      const event = heroData.updateHealth(attack);
+      return `Villain attack with ${attack} damage.  ${event} Hero current health: ${
+        heroData.hero.health - attack
+      }`;
+    }
+  };
 
   const goNextRound = (nextTurn: CurrentPlayer, message: string) => {
     dispatch({
@@ -101,7 +85,7 @@ const Battle = () => {
         roundsSummary: [...roundsSummary, message],
       },
     });
-  }
+  };
 
   const isWinner = (): boolean => {
     let winner = false;
@@ -113,7 +97,7 @@ const Battle = () => {
       winner = true;
     }
     return winner;
-  }
+  };
 
   const getFirstPlayer = (): CurrentPlayer => {
     if (heroData.hero.speed > villainData.villain.speed) {
@@ -145,7 +129,7 @@ const Battle = () => {
 
   return (
     <>
-     <BattleHeader battleStatus={battleStatus} onStartBattle={onStartBattle} />
+      <BattleHeader battleStatus={battleStatus} onStartBattle={onStartBattle} />
       <section className="grid md:grid-cols-3 grid-cols-1 justify-items-stretch gap-6 h-4/6">
         <CharacterCard
           character={heroData.hero}
