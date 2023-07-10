@@ -43,11 +43,13 @@ export default class BattleService {
     if (this.battleStatus === BattleStatus.ENDED) {
       this.heroService.resetCharacter();
       this.villainService.resetCharacter();
+      this.round = 0;
     }
 
     this.battleStatus = BattleStatus.IN_PROGRESS;
 
     this.setFirstPlayer();
+    this.showInfo();
   }
 
   private heroAttack(): void {

@@ -8,8 +8,6 @@ const heroService = new HeroService();
 const villainService = new VillainService();
 const battleService = new BattleService(heroService, villainService);
 
-battleService.showInfo();
-
 const questions = [
   {
     type: "confirm",
