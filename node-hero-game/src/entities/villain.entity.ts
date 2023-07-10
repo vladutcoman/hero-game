@@ -28,7 +28,7 @@ export default class VillainEntity extends CharacterEntity {
       DEFENCE_INTERVAL,
       SPEED_INTERVAL,
       LUCK_INTERVAL
-    )
+    );
     this._health = data.health;
     this._fullHealth = data.fullHealth;
     this._strength = data.strength;

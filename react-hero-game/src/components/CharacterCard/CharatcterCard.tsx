@@ -13,7 +13,7 @@ const CharacterCard = ({ character, highlited, image }: CharacterCardProps) => {
   const borderColor = highlited ? 'border-yellow-600' : 'border-gray-300';
 
   return (
-    <div className={`${borderColor} w-full max-w-lg bg-white border rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-10 flex flex-col items-center pb-10`}>
+    <div className={`${borderColor} max-w-full bg-white border rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 p-10 flex flex-col items-center pb-10`}>
       <img
         className="w-24 h-24 mb-3 rounded-full shadow-lg"
         src={image}
