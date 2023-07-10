@@ -16,7 +16,7 @@ const CRITICAL_STRIKE_CHANCE = 10;
 const TRIPLE_DAMAGE_CHANCE = 1;
 const RESILIENCE_CHANCE = 20;
 
-interface HeroHookResult extends CharacterHookResult {
+export interface HeroHookResult extends CharacterHookResult {
   hero: Hero;
 }
 
