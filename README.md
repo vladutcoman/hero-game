@@ -1,5 +1,7 @@
 # hero-game
 
+For both projects I have used Node 19
+
 ## react-hero-game
 
 An implementation in React of the hero test
